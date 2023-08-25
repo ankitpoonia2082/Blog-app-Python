@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+{% endblock css %}
+
+{% block js %}
+{% endblock js %}
+
+{% block title %}
+<title>Dashboard Page</title>
+{% endblock title %}
+
+
+{% block body %}
+<!-- heading  -->
+<div class="container my-3 p-2 rounded-3 shadow text-light text-center bg-secondary">
+
+    <h1>Dashboard</h1>
+
+</div>
+
+<!-- add blog div  -->
+
+<div class="container my-5">
+    <a href="{% url 'addblog' %}" class="btn btn-success">Add Blog</a>
+</div>
+
+<div class="container">
+    <table class="table">
+        <thead>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Created_at</th>
+            <th style="width: 20%;">Action</th>
+        </thead>
+
+        <tbody>
+            {% for blog in blogs %}
+
+                <tr>
+                    <td>{{blog.title}}</td>
+                    <td>{{blog.desc}}</td>
+                    <td>{{blog.created_at}}</td>
+                    <td>
+                        <a href="{% url 'updateblog' blog.id %}" class="btn btn-primary">Update</a>
+                        <a href="{% url 'deleteblog' blog.id %}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock body %}

@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+
+<style>
+    #form-div{
+        width: 60%;
+    }
+</style>
+
+{% endblock css %}
+
+{% block js %}
+{% endblock js %}
+
+{% block title %}
+<title>Addblog Page</title>
+{% endblock title %}
+
+
+{% block body %}
+<!-- heading  -->
+<div class="container my-3 p-2 rounded-3 shadow text-light text-center bg-secondary">
+
+    <h1>Add Blog</h1>
+
+</div>
+
+<!-- form div  -->
+
+<div class="container my-5 p-5 shadow" id="form-div">
+
+    <form action="{% url 'addblog' %}" method="post">
+
+        {% csrf_token %}
+
+        <!-- fields  -->
+
+        {% for fm in forms %}
+
+        <div class="mb-3">
+            {{fm.label_tag}}
+            {{fm}}
+            <!-- {{fm.error}} -->
+        </div>
+
+        {% endfor %}
+
+        <div class="mb-3">
+            <input type="submit" value="Add Blog" class="btn btn-success">
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock body %}
